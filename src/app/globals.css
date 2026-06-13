@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+/* =========================
+   NAVIRA DESIGN SYSTEM
+========================= */
+
+:root {
+  --bg: #f7f8fa;
+  --text: #111827;
+  --text-muted: #6b7280;
+
+  --primary: #0b1f3b;
+  --secondary: #1e4d8c;
+  --accent: #6c5ce7;
+
+  --border: rgba(17, 24, 39, 0.08);
+  --card: rgba(255, 255, 255, 0.72);
+
+  --gradient-primary: linear-gradient(135deg, #0b1f3b, #1e4d8c);
+  --gradient-accent: linear-gradient(135deg, #6c5ce7, #1e4d8c);
+}
+
+/* =========================
+   BASE RESET
+========================= */
+
+html,
+body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-inter), Inter, system-ui, -apple-system,
+    BlinkMacSystemFont, "SF Pro Display", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Selection */
+::selection {
+  background: rgba(108, 92, 231, 0.22);
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+h1,
+h2,
+h3 {
+  color: var(--primary);
+  letter-spacing: -0.03em;
+  font-weight: 800;
+}
+
+/* =========================
+   BACKGROUND GLOW
+========================= */
+
+.navira-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at top right, rgba(108, 92, 231, 0.16), transparent 60%),
+    radial-gradient(circle at bottom left, rgba(30, 77, 140, 0.10), transparent 55%);
+}
+
+/* =========================
+   CARD SYSTEM
+========================= */
+
+.navira-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 20px 60px rgba(11, 31, 59, 0.08);
+}
+
+/* =========================
+   UTILITIES
+========================= */
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(17, 24, 39, 0.06);
+}
+
+.shadow-soft {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
