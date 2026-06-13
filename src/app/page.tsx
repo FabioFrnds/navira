@@ -45,33 +45,39 @@ export default function Page() {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
-  const [error, setError] = useState('')
+  const [error, setError] = useState<string | null>(null)
 
   const maurice = useCountUp(1580000)
 
   async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setLoading(true)
-    setError('')
+  e.preventDefault()
 
-    try {
-      const formData = new FormData()
-      formData.set('email', email)
-
-      const res = await joinWaitlist(formData)
-
-      if (res?.error) {
-        setError(res.error)
-      } else {
-        setSuccess(true)
-        setEmail('')
-      }
-    } catch {
-      setError('Une erreur inattendue est survenue.')
-    } finally {
-      setLoading(false)
-    }
+  if (!email || !email.includes('@')) {
+    setError("Merci de renseigner une adresse email valide pour rejoindre Navira.")
+    return
   }
+
+  setLoading(true)
+  setError('')
+
+  try {
+    const formData = new FormData()
+    formData.set('email', email)
+
+    const res = await joinWaitlist(formData)
+
+    if (res?.error) {
+      setError(res.error)
+    } else {
+      setSuccess(true)
+      setEmail('')
+    }
+  } catch {
+    setError('Une erreur inattendue est survenue.')
+  } finally {
+    setLoading(false)
+  }
+}
 
   return (
     <main className="min-h-screen bg-[#F7F8FA] text-[#111827] flex items-center justify-center p-4 sm:p-6 overflow-hidden">
@@ -118,31 +124,40 @@ export default function Page() {
           </p>
 
           {/* FORM */}
-          <form className="flex flex-col sm:flex-row gap-4 max-w-lg w-full items-stretch">
+          <form
+  onSubmit={handleSubmit}
+  noValidate
+  className="flex flex-col sm:flex-row gap-4 max-w-lg w-full items-stretch"
+>
 
             <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Votre email"
-              className="h-14 flex-1 rounded-2xl border border-gray-200 bg-white px-8 outline-none focus:border-[#6C5CE7]" />
+  type="email"
+  value={email}
+  onChange={(e) => {
+    setEmail(e.target.value)
+    if (error) setError(null)
+  }}
+  placeholder="Votre email"
+  className="h-14 flex-1 rounded-2xl border border-gray-200 bg-white px-8 outline-none focus:border-[#6C5CE7]"
+/>
 
             <button
-  className="
-  w-full sm:w-auto
-  group relative h-14
-  rounded-2xl
-  bg-linear-to-r from-[#0B1F3B] to-[#1E4D8C]
-  px-10 font-bold text-white
-  transition-all duration-300 ease-out
-  hover:scale-[1.03]
-  active:scale-[0.98]
-  shadow-lg
-  hover:shadow-[0_25px_80px_rgba(108,92,231,0.4)]
-  overflow-hidden
-  cursor-pointer
-"
->
+              type="submit"
+              className="
+              w-full sm:w-auto
+              group relative h-14
+              rounded-2xl
+              bg-linear-to-r from-[#0B1F3B] to-[#1E4D8C]
+              px-10 font-bold text-white
+              transition-all duration-300 ease-out
+              hover:scale-[1.03]
+              active:scale-[0.98]
+              shadow-lg
+              hover:shadow-[0_25px_80px_rgba(108,92,231,0.4)]
+              overflow-hidden
+              cursor-pointer
+            "
+            >
   {/* LIGHT SWEEP */}
   <span className="
     absolute inset-0
@@ -165,19 +180,59 @@ export default function Page() {
   " />
 
   <span className="relative z-10">
-    {loading ? "Inscription..." : success ? "Inscrit !" : "Rejoindre la bêta"}
+    {loading ? "Inscription..." : success ? "Ajouté à la liste" : "Accéder à la bêta"}
   </span>
 </button>
 
           </form>
 
-          {error && <p className="text-red-500 text-sm mt-4">{error}</p>}
+          <div className="mt-4 space-y-3">
 
-          {success && (
-            <p className="text-green-600 text-sm mt-4">
-              Vous êtes sur la liste Navira.
-            </p>
-          )}
+  {(error || success) && (
+  <div className="relative overflow-hidden rounded-2xl border border-white/20 bg-white/60 backdrop-blur-xl px-5 py-4 shadow-lg">
+
+    {/* Glow background dynamique */}
+    <div
+      className={`absolute -top-10 -right-10 h-28 w-28 blur-3xl rounded-full opacity-40 ${
+        success ? 'bg-emerald-400' : 'bg-red-400'
+      }`}
+    />
+
+    <div className="flex items-start gap-3 relative z-10">
+
+      {/* ICON */}
+      <div
+        className={`mt-1 flex h-6 w-6 items-center justify-center rounded-full border ${
+          success
+            ? 'bg-emerald-50 border-emerald-200'
+            : 'bg-red-50 border-red-200'
+        }`}
+      >
+        <span
+          className={`h-2 w-2 rounded-full ${
+            success ? 'bg-emerald-500' : 'bg-red-500'
+          } animate-pulse`}
+        />
+      </div>
+
+      {/* TEXT */}
+      <div>
+        <p className="text-sm font-semibold text-[#0B1F3B]">
+          {success ? 'Inscription confirmée' : 'Impossible de s’inscrire'}
+        </p>
+
+        <p className="text-sm text-[#1E4D8C] mt-0.5 leading-relaxed">
+          {success
+            ? "Vous êtes bien ajouté à la liste d'attente Navira."
+            : error}
+        </p>
+      </div>
+
+    </div>
+  </div>
+)}
+
+</div>
 
         </div>
 

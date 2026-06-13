@@ -4,30 +4,26 @@ import { supabase } from '@/src/lib/supabase'
 import { isValidEmail } from '@/src/lib/validations'
 
 export async function joinWaitlist(formData: FormData) {
-  const email = formData.get('email')?.toString()
+  const email = formData.get('email')?.toString()?.trim()
 
   if (!email || !isValidEmail(email)) {
     return { error: 'Email invalide' }
   }
 
-  // Vérification doublon
-  const { data: existing } = await supabase
-    .from('waitlist')
-    .select('email')
-    .eq('email', email)
-    .maybeSingle()
-
-  if (existing) {
-    return { error: 'Tu es déjà inscrit !' }
-  }
-
-  // Insertion
+  // INSERT DIRECT (on laisse Supabase gérer le unique)
   const { error } = await supabase
-    .from('waitlist')
+    .from('leads')
     .insert([{ email }])
 
   if (error) {
-    return { error: "Erreur serveur" }
+    // 🔥 email déjà existant (unique constraint)
+    if (error.code === '23505') {
+      return { error: 'Tu es déjà inscrit à la waitlist.' }
+    }
+
+    console.error('Supabase error:', error)
+
+    return { error: 'Erreur serveur. Réessaie plus tard.' }
   }
 
   return { success: true }
