@@ -1,75 +1,129 @@
 'use client'
 
+import { PrimaryButton } from '@/src/components/ui/primary-button'
+
 export default function TestimonialsSection() {
   return (
-    <section className="relative w-full py-28">
+    <section className="relative py-28 bg-blue-zone overflow-hidden">
 
-      {/* BACKGROUND */}
-      <div className="navira-glow" />
+      {/* BACKGROUND (léger overlay déjà inclus dans bg-blue-zone) */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(108,92,231,0.04),transparent_60%)]" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
 
         {/* HEADER */}
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-(--primary)">
+        <div className="text-center max-w-3xl mx-auto">
+
+          <p className="text-xs tracking-[0.16em] uppercase text-(--accent) font-semibold">
+            Retours utilisateurs
+          </p>
+
+          <h2 className="mt-3 text-5xl font-extrabold tracking-[-0.04em] text-(--primary)">
             Ils ont simulé leur trajectoire
           </h2>
 
-          <p className="mt-6 text-lg text-(--text-muted)">
-            Des utilisateurs qui ont enfin compris l’impact réel de leurs choix.
+          <p className="mt-5 text-lg text-(--text-muted)">
+            Des décisions plus claires grâce à une lecture structurée de leur avenir financier.
           </p>
+
+          {/* SOCIAL PROOF */}
+          <div className="mt-6 flex items-center justify-center gap-3 text-sm text-(--text-muted)">
+
+            <div className="flex items-center gap-1 text-(--accent)">
+              ★★★★★
+            </div>
+
+            <span>4.9/5 basé sur +1 200 simulations</span>
+
+          </div>
+
         </div>
 
         {/* GRID */}
-        <div className="mt-14 grid md:grid-cols-3 gap-6">
+        <div className="mt-16 grid md:grid-cols-3 gap-6">
 
-          {/* 1 */}
-          <div className="navira-card p-6">
-            <p className="text-sm text-(--text-muted)">
-              “Je pensais rester en France, mais la simulation m’a montré un écart énorme sur 20 ans.”
+          {/* CARD 1 */}
+          <div className="navira-card p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(11,31,59,0.10)]">
+
+            <div className="text-(--accent) text-3xl leading-none mb-5">“</div>
+
+            <p className="text-sm text-(--text-muted) leading-relaxed">
+              Je n’avais jamais vu mes choix de vie présentés de façon aussi structurée et lisible.
             </p>
 
-            <div className="mt-6">
-              <p className="font-semibold text-(--primary)">Alexandre M.</p>
-              <p className="text-xs text-(--text-muted)">Freelance</p>
+            <div className="mt-6 pt-5 border-t border-(--border)">
+
+              <p className="font-semibold text-(--primary)">
+                Sarah L.
+              </p>
+
+              <p className="text-xs text-(--text-muted)">
+                Consultante
+              </p>
+
             </div>
+
           </div>
 
-          {/* 2 */}
-          <div className="navira-card p-6">
-            <p className="text-sm text-(--text-muted)">
-              “Je n’avais jamais vu mes choix de vie présentés comme ça. C’est ultra clair.”
+          {/* CARD 2 */}
+          <div className="navira-card p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(11,31,59,0.10)]">
+
+            <div className="text-(--accent) text-3xl leading-none mb-5">“</div>
+
+            <p className="text-sm text-(--text-muted) leading-relaxed">
+              Je pensais rester en France, mais la simulation a montré un écart patrimonial énorme sur 20 ans.
             </p>
 
-            <div className="mt-6">
-              <p className="font-semibold text-(--primary)">Sarah L.</p>
-              <p className="text-xs text-(--text-muted)">Consultante</p>
+            <div className="mt-6 pt-5 border-t border-(--border)">
+
+              <p className="font-semibold text-(--primary)">
+                Alexandre M.
+              </p>
+
+              <p className="text-xs text-(--text-muted)">
+                Freelance
+              </p>
+
             </div>
+
           </div>
 
-          {/* 3 */}
-          <div className="navira-card p-6">
-            <p className="text-sm text-(--text-muted)">
-              “J’ai comparé Portugal vs Maurice. La décision est devenue évidente.”
+          {/* CARD 3 */}
+          <div className="navira-card p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(11,31,59,0.10)]">
+
+            <div className="text-(--accent) text-3xl leading-none mb-5">“</div>
+
+            <p className="text-sm text-(--text-muted) leading-relaxed">
+              Portugal vs Maurice comparé sur revenus et fiscalité : la décision est devenue évidente.
             </p>
 
-            <div className="mt-6">
-              <p className="font-semibold text-(--primary)">Thomas R.</p>
-              <p className="text-xs text-(--text-muted)">Entrepreneur</p>
+            <div className="mt-6 pt-5 border-t border-(--border)">
+
+              <p className="font-semibold text-(--primary)">
+                Thomas R.
+              </p>
+
+              <p className="text-xs text-(--text-muted)">
+                Entrepreneur
+              </p>
+
             </div>
+
           </div>
 
         </div>
 
         {/* CTA */}
-        <div className="mt-14 text-center">
-          <button className="px-8 py-4 rounded-xl bg-(--primary) text-white font-semibold hover:opacity-90 transition">
-            Simuler ma trajectoire
-          </button>
+        <div className="mt-16 text-center">
+
+          <PrimaryButton>
+            Créer mon compte
+          </PrimaryButton>
 
           <p className="mt-4 text-xs text-(--text-muted)">
             Résultat en moins de 2 minutes
           </p>
+
         </div>
 
       </div>

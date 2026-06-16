@@ -1,8 +1,25 @@
 'use client'
 
 import Image from 'next/image'
-import { PrimaryButton } from '@/src/components/ui/primary-button'
+import Link from 'next/link'
+
 import { SecondaryButton } from '@/src/components/ui/secondary-button'
+import { GhostButton } from '@/src/components/ui/ghost-button'
+
+const navigation = [
+  {
+    label: 'À propos',
+    href: '#about',
+  },
+  {
+    label: 'Simulation',
+    href: '#simulation',
+  },
+  {
+    label: 'Tarifs',
+    href: '#pricing',
+  },
+]
 
 export default function Navbar() {
   return (
@@ -11,50 +28,59 @@ export default function Navbar() {
         fixed top-4 left-1/2 -translate-x-1/2
         w-[95%] max-w-6xl z-50
 
-        bg-white/90 backdrop-blur-xl
-        border border-(--border)
+        bg-white/80
+        backdrop-blur-xl
 
+        border border-(--border)
         rounded-2xl
-        shadow-lg
+
+        shadow-soft
       "
     >
       <div className="flex items-center justify-between h-20 px-6">
 
         {/* LOGO */}
-        <div className="flex items-center">
+        <Link
+          href="/"
+          className="flex items-center shrink-0"
+        >
           <Image
             src="/navira-logo.png"
             alt="Navira"
             width={120}
             height={60}
             className="w-32 h-auto"
+            priority
           />
-        </div>
+        </Link>
 
-        {/* LINKS */}
+        {/* NAVIGATION */}
         <nav className="hidden md:flex items-center gap-10 text-sm text-(--text-muted)">
-          {['A propos', 'Simulation', 'Tarifs'].map((item) => (
-            <a
-              key={item}
+          {navigation.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
               className="
-                relative group cursor-pointer
+                relative group
 
                 transition-colors duration-300
                 hover:text-(--primary)
               "
             >
-              {item}
+              {item.label}
 
               <span
                 className="
                   absolute left-0 -bottom-1
                   h-px w-0
+
                   bg-[linear-gradient(to_right,transparent,var(--accent),transparent)]
+
                   transition-all duration-300
                   group-hover:w-full
                 "
               />
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -62,16 +88,14 @@ export default function Navbar() {
         <div className="flex items-center gap-2.5">
 
           <div className="hidden sm:block">
-  <SecondaryButton>
-    Se connecter
-  </SecondaryButton>
-</div>
+            <GhostButton>
+              Se connecter
+            </GhostButton>
+          </div>
 
-<div className="ml-1">
-  <PrimaryButton>
-    Créer un compte
-  </PrimaryButton>
-</div>
+          <SecondaryButton>
+            Créer un compte
+          </SecondaryButton>
 
         </div>
 

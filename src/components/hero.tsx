@@ -2,8 +2,9 @@
 
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+
 import { PrimaryButton } from '@/src/components/ui/primary-button'
-import { SecondaryButton } from '@/src/components/ui/secondary-button'
+import { GhostButton } from '@/src/components/ui/ghost-button'
 
 function useProgress(duration = 3500) {
   const [progress, setProgress] = useState(0)
@@ -18,10 +19,13 @@ function useProgress(duration = 3500) {
 
       setProgress(eased)
 
-      if (p < 1) raf = requestAnimationFrame(animate)
+      if (p < 1) {
+        raf = requestAnimationFrame(animate)
+      }
     }
 
     raf = requestAnimationFrame(animate)
+
     return () => cancelAnimationFrame(raf)
   }, [duration])
 
@@ -33,22 +37,24 @@ const clamp = (v: number) => Math.max(0, Math.min(v, 1))
 export default function Hero() {
   const progress = useProgress(3500)
 
-  // 🔥 SOURCE UNIQUE UI (important)
-  const uiProgress = progress
+  const score = progress * 87
 
-  // 🔥 SCORE parfaitement sync UI
-  const score = uiProgress * 87
-
-  // 🔥 mêmes données mais SANS recalcul instable
-  const maurice = uiProgress
-  const dubai = clamp((uiProgress - 0.06) / 0.94)
-  const france = clamp((uiProgress - 0.14) / 0.86)
+  const maurice = progress
+  const dubai = clamp((progress - 0.06) / 0.94)
+  const france = clamp((progress - 0.14) / 0.86)
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden pt-28 bg-surface">
-
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(108,92,231,0.08),transparent_55%),radial-gradient(circle_at_bottom,rgba(11,31,59,0.06),transparent_60%)]" />
-
+    <section
+      id="hero"
+      className="
+        relative
+        min-h-screen
+        w-full
+        overflow-hidden
+        pt-28
+        bg-hero
+      "
+    >
       <div className="relative z-10 max-w-6xl mx-auto px-6 flex items-center min-h-[calc(100vh-7rem)]">
 
         <div className="grid md:grid-cols-12 gap-14 w-full items-center">
@@ -62,7 +68,8 @@ export default function Hero() {
             </div>
 
             <h1 className="mt-6 text-6xl md:text-7xl font-extrabold leading-[1.05] tracking-[-0.04em] text-(--primary)">
-              Où devriez-vous<br />
+              Où devriez-vous
+              <br />
               vraiment vivre ?
             </h1>
 
@@ -71,18 +78,34 @@ export default function Hero() {
             </p>
 
             <p className="mt-4 text-sm text-(--text-muted) max-w-lg leading-relaxed">
-              Navira est un outil qui vous aide à décider où vivre en fonction de la fiscalité, coût de la vie, climat, impact sur votre patrimoine et bien plus encore...<br />
-              Vous choisissez ce qui compte vraiment pour vous.
+              Navira vous aide à comparer fiscalité, coût de la vie,
+              pouvoir d’achat, climat, patrimoine et qualité de vie afin
+              d’identifier la destination la plus adaptée à votre situation.
             </p>
 
-            <div className="mt-8 flex items-center gap-2.5">
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+
               <PrimaryButton>
                 Créer ma simulation
               </PrimaryButton>
 
-              <SecondaryButton>
+              <GhostButton>
                 Voir un exemple
-              </SecondaryButton>
+              </GhostButton>
+
+            </div>
+
+            {/* SOCIAL PROOF */}
+            <div className="mt-6 flex items-center gap-4 text-sm text-(--text-muted)">
+
+              <div className="flex items-center gap-1 text-(--accent)">
+                ★★★★★
+              </div>
+
+              <span>
+                Plus de 1 000 simulations générées
+              </span>
+
             </div>
 
           </div>
@@ -94,28 +117,36 @@ export default function Hero() {
 
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(108,92,231,0.18),transparent_60%)] blur-3xl" />
 
-              <div className="flex justify-center -mt-20 -mb-20 relative z-20 animate-[pulse_1.5s_ease-in-out_3]">
+              {/* NAVI */}
+              <div className="flex justify-center -mt-20 -mb-20 relative z-20">
+
                 <Image
                   src="/navi.png"
                   alt="Navi"
                   width={320}
                   height={320}
                   priority
-                  className="drop-shadow-2xl pointer-events-none"
+                  className="
+                    drop-shadow-2xl
+                    pointer-events-none
+                    float
+                  "
                 />
+
               </div>
 
               {/* CARD */}
-              <div className="relative z-10 navira-card p-6 rounded-3xl overflow-hidden">
+              <div className="relative z-10 navira-card p-6 overflow-hidden">
 
-                {/* HEADER */}
                 <div className="flex items-start justify-between mb-5">
+
                   <div>
-                    <p className="text-xs tracking-[0.12em] text-(--text-muted)">
-                      Navi — votre assistant de simulation
+                    <p className="text-xs tracking-[0.12em] uppercase text-(--text-muted)">
+                      Simulation Navira
                     </p>
+
                     <p className="text-sm text-(--secondary) font-medium mt-1">
-                      Analyse personnalisée
+                      Résultat prévisionnel
                     </p>
                   </div>
 
@@ -123,19 +154,22 @@ export default function Hero() {
                     <span className="h-2 w-2 rounded-full bg-(--accent) animate-pulse" />
                     EN DIRECT
                   </span>
+
                 </div>
 
                 {/* SCORE */}
                 <div className="mb-6">
+
                   <div className="text-6xl font-extrabold text-(--primary)">
                     {score.toFixed(1)}%
                   </div>
 
                   <p className="text-xs text-(--accent)">
-                    {score < 65 && "Analyse du profil..."}
-                    {score >= 65 && score < 87 && "Comparaison en cours..."}
-                    {score >= 87 && "Résultat final de votre simulation."}
+                    {score < 65 && 'Analyse du profil...'}
+                    {score >= 65 && score < 87 && 'Comparaison en cours...'}
+                    {score >= 87 && 'Résultat final de votre simulation.'}
                   </p>
+
                 </div>
 
                 {/* COUNTRIES */}
@@ -146,10 +180,13 @@ export default function Hero() {
                       <span className="font-semibold">Maurice</span>
                       <span>87%</span>
                     </div>
+
                     <div className="h-1.5 bg-(--accent)/10 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-(--accent)"
-                        style={{ width: `${maurice * 87}%` }}
+                        style={{
+                          width: `${maurice * 87}%`,
+                        }}
                       />
                     </div>
                   </div>
@@ -159,10 +196,13 @@ export default function Hero() {
                       <span>Dubaï</span>
                       <span>81%</span>
                     </div>
-                    <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
+
+                    <div className="h-1.5 bg-black/5 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-(--secondary)"
-                        style={{ width: `${dubai * 81}%` }}
+                        style={{
+                          width: `${dubai * 81}%`,
+                        }}
                       />
                     </div>
                   </div>
@@ -172,10 +212,13 @@ export default function Hero() {
                       <span>France</span>
                       <span>49%</span>
                     </div>
-                    <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
+
+                    <div className="h-1.5 bg-black/5 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-gray-400"
-                        style={{ width: `${france * 49}%` }}
+                        style={{
+                          width: `${france * 49}%`,
+                        }}
                       />
                     </div>
                   </div>
@@ -184,19 +227,26 @@ export default function Hero() {
 
                 {/* INSIGHT */}
                 <div className="mt-6 pt-4 border-t border-(--border)">
+
                   <p className="text-sm text-(--primary) font-medium">
-                    Jusqu’à +50% de pouvoir d’achat en plus qu’en France.
+                    Jusqu’à +50% de pouvoir d’achat supplémentaire.
                   </p>
-                  <p className="text-xs text-(--text-muted)">
-                    Résultats personnalisés selon votre profil et vos paramètres de simulation afin de refléter au mieux votre situation et vos objectifs.
+
+                  <p className="text-xs text-(--text-muted) mt-1">
+                    Résultat généré à partir de vos revenus, objectifs,
+                    patrimoine et critères de vie.
                   </p>
+
                 </div>
 
               </div>
+
             </div>
+
           </div>
 
         </div>
+
       </div>
     </section>
   )

@@ -1,90 +1,148 @@
 'use client'
 
+import { useState } from 'react'
+
+const faqItems = [
+  {
+    question: 'Est-ce un conseil financier ?',
+    answer:
+      "Non. Navira fournit des simulations basées sur des données publiques et des hypothèses explicites. Il ne s’agit pas de conseils financiers, fiscaux ou juridiques.",
+  },
+  {
+    question: 'Les données sont-elles fiables ?',
+    answer:
+      'Oui. Les modèles utilisent des données publiques (fiscalité, coût de la vie, indicateurs économiques) mises à jour régulièrement.',
+  },
+  {
+    question: 'Est-ce personnalisé ?',
+    answer:
+      'Oui. Chaque simulation est adaptée à votre profil, vos revenus, votre patrimoine, vos objectifs et votre horizon temporel.',
+  },
+  {
+    question: 'Puis-je modifier mes scénarios ?',
+    answer:
+      'Oui. Vous pouvez comparer plusieurs pays, revenus et styles de vie afin de mesurer leur impact sur votre trajectoire.',
+  },
+  {
+    question: 'Pourquoi payer pour Navira ?',
+    answer:
+      'Parce qu’une décision d’expatriation mérite une analyse structurée plutôt qu’une estimation approximative.',
+  },
+]
+
 export default function FAQSection() {
+  const [open, setOpen] = useState<number | null>(0)
+
   return (
-    <section className="relative w-full py-28">
+    <section className="relative py-28 bg-surface overflow-hidden">
 
       {/* BACKGROUND */}
-      <div className="navira-glow" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(108,92,231,0.06),transparent_55%)]" />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6">
+      <div className="relative z-10 max-w-5xl mx-auto px-6">
 
         {/* HEADER */}
-        <div className="text-center">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-(--primary)">
+        <div className="text-center max-w-2xl mx-auto">
+
+          <p className="text-xs tracking-[0.16em] uppercase text-(--accent) font-semibold">
             Questions fréquentes
+          </p>
+
+          <h2 className="mt-3 text-5xl font-extrabold tracking-[-0.04em] text-(--primary)">
+            Vous avez des questions ?
           </h2>
 
-          <p className="mt-6 text-lg text-(--text-muted)">
-            Tout ce que vous devez savoir avant d’utiliser Navira.
+          <p className="mt-5 text-(--text-muted)">
+            Voici les réponses aux interrogations les plus fréquentes concernant
+            les simulations et le fonctionnement de Navira.
           </p>
+
         </div>
 
         {/* FAQ LIST */}
         <div className="mt-14 space-y-4">
 
-          {/* 1 */}
-          <div className="navira-card p-6">
-            <h3 className="text-lg font-bold text-(--primary)">
-              Est-ce un conseil financier ?
-            </h3>
-            <p className="mt-3 text-sm text-(--text-muted)">
-              Non. Navira fournit des simulations basées sur des données publiques et des hypothèses explicites.  
-              Il ne s’agit pas de conseils financiers, fiscaux ou juridiques.
-            </p>
-          </div>
+          {faqItems.map((item, index) => {
+            const isOpen = open === index
 
-          {/* 2 */}
-          <div className="navira-card p-6">
-            <h3 className="text-lg font-bold text-(--primary)">
-              Les données sont-elles fiables ?
-            </h3>
-            <p className="mt-3 text-sm text-(--text-muted)">
-              Oui. Les modèles utilisent des données publiques (fiscalité moyenne, coût de la vie, statistiques économiques) mises à jour régulièrement.
-            </p>
-          </div>
+            return (
+              <div
+                key={item.question}
+                className={`
+                  navira-card
+                  rounded-3xl
+                  overflow-hidden
+                  transition-all duration-300
+                  border border-(--border)
 
-          {/* 3 */}
-          <div className="navira-card p-6">
-            <h3 className="text-lg font-bold text-(--primary)">
-              Est-ce personnalisé ?
-            </h3>
-            <p className="mt-3 text-sm text-(--text-muted)">
-              Oui. Chaque simulation est basée sur votre profil : revenus, épargne, objectifs et horizon temporel.
-            </p>
-          </div>
+                  hover:-translate-y-0.5
+                  hover:border-(--accent)/25
+                  hover:shadow-[0_15px_40px_rgba(11,31,59,0.08)]
 
-          {/* 4 */}
-          <div className="navira-card p-6">
-            <h3 className="text-lg font-bold text-(--primary)">
-              Puis-je modifier mes scénarios ?
-            </h3>
-            <p className="mt-3 text-sm text-(--text-muted)">
-              Oui. Vous pouvez comparer plusieurs pays, revenus et styles de vie pour voir l’impact direct sur votre trajectoire.
-            </p>
-          </div>
+                  ${isOpen ? 'border-(--accent)/30' : ''}
+                `}
+              >
 
-          {/* 5 */}
-          <div className="navira-card p-6">
-            <h3 className="text-lg font-bold text-(--primary)">
-              Pourquoi payer pour Navira ?
-            </h3>
-            <p className="mt-3 text-sm text-(--text-muted)">
-              Parce que les décisions de vie majeures (expatriation, carrière, investissement) nécessitent des projections structurées, pas des estimations approximatives.
-            </p>
-          </div>
+                <button
+                  onClick={() => setOpen(isOpen ? null : index)}
+                  className="
+                    w-full flex items-center justify-between
+                    px-6 py-5 text-left
+                    cursor-pointer
+                  "
+                  aria-expanded={isOpen}
+                >
+                  <span
+                    className={`
+                      text-base md:text-lg font-semibold
+                      transition-colors duration-300
+                      ${isOpen ? 'text-(--secondary)' : 'text-(--primary)'}
+                    `}
+                  >
+                    {item.question}
+                  </span>
 
-        </div>
+                  <svg
+                    className={`
+                      h-5 w-5 text-(--accent)
+                      transition-transform duration-300
+                      ${isOpen ? 'rotate-180' : ''}
+                    `}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
 
-        {/* CTA FINAL */}
-        <div className="mt-16 text-center">
-          <button className="px-8 py-4 rounded-xl bg-(--accent) text-white font-semibold hover:opacity-90 transition">
-            Commencer une simulation
-          </button>
+                {/* ANSWER (smooth animation fix) */}
+                <div
+                  className={`
+                    grid transition-all duration-300 ease-in-out
+                    ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}
+                  `}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-6 pb-6 pt-2">
+                      <div className="h-px bg-(--border) mb-4" />
 
-          <p className="mt-4 text-xs text-(--text-muted)">
-            Aucun engagement. Résultats immédiats.
-          </p>
+                      <p className="text-sm leading-relaxed text-(--text-muted)">
+                        {item.answer}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            )
+          })}
+
         </div>
 
       </div>
