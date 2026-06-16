@@ -76,7 +76,11 @@ export default function Pricing() {
     src="/navi-pricing.png"
     alt="Navi mascot"
     className="
-      absolute -top-45 left-1/2 -translate-x-1/2
+      absolute
+      z-0
+      -top-45
+      left-1/2
+      -translate-x-1/2
       w-72
       opacity-90
       pointer-events-none
@@ -88,62 +92,81 @@ export default function Pricing() {
     "
   />
 
-  <div className="
-    navira-card p-7 flex flex-col h-full
-    border border-(--accent)/30
-    shadow-soft
-    relative
-    z-10
-    hover:-translate-y-1
-    transition
-  ">
 
-            <div className="relative z-10 flex flex-col h-full">
+  <div
+    className="
+      navira-card
+      bg-white
+      p-7
+      flex flex-col h-full
 
-              <div>
+      border border-(--accent)/30
+      shadow-soft
 
-                <div className="flex justify-between items-center">
+      relative
+      z-10
 
-                  <p className="text-xs text-(--accent) uppercase tracking-widest font-semibold">
-                    Recommandé
-                  </p>
+      hover:-translate-y-1
+      transition
+    "
+  >
 
-                  <span className="text-xs px-2 py-1 rounded-full bg-(--accent)/10 text-(--accent)">
-                    illimité
-                  </span>
+    <div className="relative z-10 flex flex-col h-full">
 
-                </div>
+      <div>
 
-                <h3 className="mt-3 text-2xl font-bold text-(--primary)">
-                  Navira Global
-                </h3>
+        <div className="flex justify-between items-center">
 
-                <p className="mt-2 text-sm text-(--text-muted)">
-                  Analyse complète de votre situation et comparaison entre plus de 20 pays.
-                </p>
+          <p className="text-xs text-(--accent) uppercase tracking-widest font-semibold">
+            Recommandé
+          </p>
 
-                <p className="mt-6 text-3xl font-bold text-(--accent)">
-                  999€
-                </p>
+          <span className="text-xs px-2 py-1 rounded-full bg-(--accent)/10 text-(--accent)">
+            illimité
+          </span>
 
-                <ul className="mt-6 space-y-2 text-sm text-(--text-muted)">
-                  <li>✔ Analyse personnalisée complète</li>
-                  <li>✔ +20 pays comparés</li>
-                  <li>✔ Fiscalité, patrimoine... et bien plus encore</li>
-                  <li>✔ Projection 5 / 10 / 20 ans</li>
-                  <li>✔ Rapports PDF illimités</li>
-                  <li>✔ Mises à jour incluses</li>
-                </ul>
+        </div>
 
-              </div>
 
-              <div className="mt-auto pt-8">
-                <SecondaryButton>Accéder à ma simulation</SecondaryButton>
-              </div>
+        <h3 className="mt-3 text-2xl font-bold text-(--primary)">
+          Navira Global
+        </h3>
 
-            </div>
-          </div>
-          </div>
+
+        <p className="mt-2 text-sm text-(--text-muted)">
+          Analyse complète de votre situation et comparaison entre plus de 20 pays.
+        </p>
+
+
+        <p className="mt-6 text-3xl font-bold text-(--accent)">
+          999€
+        </p>
+
+
+        <ul className="mt-6 space-y-2 text-sm text-(--text-muted)">
+          <li>✔ Analyse personnalisée complète</li>
+          <li>✔ +20 pays comparés</li>
+          <li>✔ Fiscalité, patrimoine... et bien plus encore</li>
+          <li>✔ Projection 5 / 10 / 20 ans</li>
+          <li>✔ Rapports PDF illimités</li>
+          <li>✔ Mises à jour incluses</li>
+        </ul>
+
+      </div>
+
+
+      <div className="mt-auto pt-8">
+        <SecondaryButton>
+          Accéder à ma simulation
+        </SecondaryButton>
+      </div>
+
+
+    </div>
+
+  </div>
+
+</div>
 
           {/* RIGHT */}
           <div className="navira-card p-7 flex flex-col h-full transition hover:-translate-y-1">

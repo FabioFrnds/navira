@@ -95,7 +95,11 @@ export default function Simulation() {
     src="/navi-simulation.png"
     alt="Navi simulation"
     className="
-      absolute left-0 top-1/2 -translate-y-1/2
+      absolute
+      z-0
+      left-0
+      top-1/2
+      -translate-y-1/2
       translate-x-[-60%]
       w-64
       opacity-90
@@ -110,7 +114,9 @@ export default function Simulation() {
 
   <div
     className="
-      navira-card p-7
+      navira-card
+      bg-white
+      p-7
       relative z-10
 
       transition-all duration-300
@@ -119,50 +125,54 @@ export default function Simulation() {
     "
   >
 
-            <div className="flex items-center justify-between">
-              <p className="text-xs text-(--text-muted) uppercase tracking-widest">
-                Scénario basique
-              </p>
+    <div className="flex items-center justify-between">
+      <p className="text-xs text-(--text-muted) uppercase tracking-widest">
+        Scénario basique
+      </p>
 
-              <span className="text-xs text-(--text-muted)">
-                10 ans
-              </span>
-            </div>
+      <span className="text-xs text-(--text-muted)">
+        10 ans
+      </span>
+    </div>
 
-            <h3 className="mt-3 text-lg font-bold text-(--primary)">
-              France - scénario de référence
-            </h3>
+    <h3 className="mt-3 text-lg font-bold text-(--primary)">
+      France - scénario de référence
+    </h3>
 
-            <div className="mt-6 space-y-4">
 
-              <div>
-                <p className="text-sm text-(--text-muted)">
-                  Patrimoine estimé
-                </p>
+    <div className="mt-6 space-y-4">
 
-                <p className="text-2xl font-bold text-(--primary)">
-                  ~150 000€
-                </p>
-              </div>
+      <div>
+        <p className="text-sm text-(--text-muted)">
+          Patrimoine estimé
+        </p>
 
-              <div>
-                <p className="text-sm text-(--text-muted)">
-                  Épargne
-                </p>
+        <p className="text-2xl font-bold text-(--primary)">
+          ~150 000€
+        </p>
+      </div>
 
-                <p className="text-sm font-semibold text-(--text-muted)">
-                  Modérée
-                </p>
-              </div>
 
-              <p className="text-sm text-(--text-muted) leading-relaxed">
-                Croissance stable mais fortement impactée par la fiscalité et le coût global sur le long terme.
-              </p>
+      <div>
+        <p className="text-sm text-(--text-muted)">
+          Épargne
+        </p>
 
-            </div>
-            </div>
+        <p className="text-sm font-semibold text-(--text-muted)">
+          Modérée
+        </p>
+      </div>
 
-          </div>
+
+      <p className="text-sm text-(--text-muted) leading-relaxed">
+        Croissance stable mais fortement impactée par la fiscalité et le coût global sur le long terme.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
 
           {/* PORTUGAL */}
           <div
