@@ -1,9 +1,24 @@
 import Image from 'next/image'
 
 const footerLinks = {
-  product: ['Simulation', 'Exemple de rapport', 'Tarifs'],
-  company: ['À propos', 'Contact'],
-  legal: ['CGU', 'Confidentialité', 'Mentions légales'],
+  product: [
+    { label: 'Notre produit', href: '#what' },
+    { label: 'Exemple de Simulation', href: '#simulation' },
+    { label: 'Exemple de rapport', href: '#report' },
+    { label: 'Tarification', href: '#pricing' },
+    { label: 'Avis clients', href: '#testimonials' },
+    { label: 'Foire aux questions', href: '#faq' },
+  ],
+  company: [
+    { label: 'À propos', href: '#about' },
+    { label: 'Contact', href: '#contact' },
+    { label: 'Blog', href: '#blog' },
+  ],
+  legal: [
+    { label: 'CGU', href: '#cgu' },
+    { label: 'Confidentialité', href: '#privacy' },
+    { label: 'Mentions légales', href: '#legal' },
+  ],
 }
 
 export default function Footer() {
@@ -37,7 +52,7 @@ export default function Footer() {
 
               <div className="mt-8 flex items-center gap-2 text-sm text-white/50">
                 <span className="h-2 w-2 rounded-full bg-(--accent)" />
-                Analyse comparative multi-pays
+                Analyse comparative de plus de 20 pays
               </div>
 
             </div>
@@ -47,16 +62,16 @@ export default function Footer() {
 
               {/* PRODUCT */}
               <div>
-                <p className="text-white font-semibold mb-5">Produit</p>
+                <p className="text-white font-semibold mb-5">Découvrir Navira</p>
 
                 <div className="space-y-3 text-sm">
                   {footerLinks.product.map((item) => (
                     <a
-                      key={item}
-                      href="#"
+                      key={item.label}
+                      href={item.href}
                       className="group relative block w-fit text-white/60 transition-colors duration-300 hover:text-white focus:text-white"
                     >
-                      {item}
+                      {item.label}
 
                       <span className="absolute left-0 -bottom-1 h-px w-0 bg-[linear-gradient(to_right,transparent,var(--accent),transparent)] transition-all duration-300 group-hover:w-full" />
                     </a>
@@ -66,16 +81,16 @@ export default function Footer() {
 
               {/* COMPANY */}
               <div>
-                <p className="text-white font-semibold mb-5">Société</p>
+                <p className="text-white font-semibold mb-5">En savoir plus</p>
 
                 <div className="space-y-3 text-sm">
                   {footerLinks.company.map((item) => (
                     <a
-                      key={item}
-                      href="#"
+                      key={item.label}
+                      href={item.href}
                       className="group relative block w-fit text-white/60 transition-colors duration-300 hover:text-white focus:text-white"
                     >
-                      {item}
+                      {item.label}
 
                       <span className="absolute left-0 -bottom-1 h-px w-0 bg-[linear-gradient(to_right,transparent,var(--accent),transparent)] transition-all duration-300 group-hover:w-full" />
                     </a>
@@ -90,11 +105,11 @@ export default function Footer() {
                 <div className="space-y-3 text-sm">
                   {footerLinks.legal.map((item) => (
                     <a
-                      key={item}
-                      href="#"
+                      key={item.label}
+                      href={item.href}
                       className="group relative block w-fit text-white/60 transition-colors duration-300 hover:text-white focus:text-white"
                     >
-                      {item}
+                      {item.label}
 
                       <span className="absolute left-0 -bottom-1 h-px w-0 bg-[linear-gradient(to_right,transparent,var(--accent),transparent)] transition-all duration-300 group-hover:w-full" />
                     </a>

@@ -2,9 +2,9 @@
 
 import { PrimaryButton } from '@/src/components/ui/primary-button'
 
-export default function WhatYouGetSection() {
+export default function What() {
   return (
-    <section className="relative py-28 bg-surface overflow-hidden">
+    <section id="what" className="relative py-28 bg-blue-zone overflow-hidden">
 
       {/* BACKGROUND */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(108,92,231,0.06),transparent_55%)]" />
@@ -12,14 +12,14 @@ export default function WhatYouGetSection() {
       <div className="relative z-10 max-w-6xl mx-auto px-6">
 
         {/* HEADER (centré pour cohérence globale) */}
-        <div className="text-center max-w-3xl mx-auto">
+        <div className="text-center max-w-4xl mx-auto">
 
           <p className="text-xs tracking-[0.16em] uppercase text-(--accent) font-semibold">
             Compréhension
           </p>
 
           <h2 className="mt-3 text-5xl font-extrabold tracking-[-0.04em] text-(--primary) leading-tight">
-            Ce que Navira vous permet de comprendre
+            Ce que Navira vous aide à comprendre
           </h2>
 
           <p className="mt-5 text-lg text-(--text-muted)">
@@ -39,7 +39,7 @@ export default function WhatYouGetSection() {
             </p>
 
             <h3 className="mt-4 text-xl font-bold text-(--primary)">
-              Une vision claire de votre avenir
+              Visualisez votre avenir
             </h3>
 
             <p className="mt-4 text-sm text-(--text-muted) leading-relaxed">
@@ -90,17 +90,17 @@ export default function WhatYouGetSection() {
           <div className="text-center md:text-left">
 
             <h3 className="text-2xl font-bold text-(--primary)">
-              Prêt à voir votre trajectoire ?
+              Prêt à comprendre votre véritable situation ?
             </h3>
 
             <p className="mt-2 text-sm text-(--text-muted)">
-              Lancez une simulation personnalisée en moins de 2 minutes.
+              Lancez une simulation personnalisée et découvrez l’impact réel de votre expatriation en moins de 2 minutes.
             </p>
 
           </div>
 
           <PrimaryButton>
-            Lancer une simulation
+            Lancer ma simulation
           </PrimaryButton>
 
         </div>

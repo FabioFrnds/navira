@@ -4,37 +4,37 @@ import { useState } from 'react'
 
 const faqItems = [
   {
-    question: 'Est-ce un conseil financier ?',
+    question: 'Les simulations sont-elles fiables ?',
     answer:
-      "Non. Navira fournit des simulations basées sur des données publiques et des hypothèses explicites. Il ne s’agit pas de conseils financiers, fiscaux ou juridiques.",
+      "Les simulations combinent des données publiques (fiscalité, coût de la vie, indicateurs économiques) et des retours terrain de personnes installées sur place. Cela permet de refléter au mieux la réalité de chaque pays et de comparer des scénarios de façon cohérente.",
   },
   {
-    question: 'Les données sont-elles fiables ?',
+    question: 'Est-ce que Navira peut m’aider à éviter une mauvaise décision ?',
     answer:
-      'Oui. Les modèles utilisent des données publiques (fiscalité, coût de la vie, indicateurs économiques) mises à jour régulièrement.',
+      'Oui. Beaucoup de décisions d’expatriation sont prises sans vision complète des impacts financiers, ce qui peut représenter des écarts de plusieurs dizaines de milliers d’euros sur le long terme. Navira vous permet de comparer clairement les conséquences de chaque pays avant de vous engager.',
   },
   {
-    question: 'Est-ce personnalisé ?',
+    question: 'Quelle est la différence avec un comparateur classique ?',
     answer:
-      'Oui. Chaque simulation est adaptée à votre profil, vos revenus, votre patrimoine, vos objectifs et votre horizon temporel.',
+      'Les comparateurs classiques se limitent souvent au coût de la vie et proposent une vision générique. Navira va plus loin en intégrant la fiscalité, le patrimoine et l’évolution de votre situation dans le temps, avec une approche plus proche de la réalité terrain et personnalisée à votre profil.',
   },
   {
-    question: 'Puis-je modifier mes scénarios ?',
+    question: 'Est-ce que la simulation est adaptée à ma situation personnelle ?',
     answer:
-      'Oui. Vous pouvez comparer plusieurs pays, revenus et styles de vie afin de mesurer leur impact sur votre trajectoire.',
+      'Oui. Chaque simulation est personnalisée selon une multitude de critères : revenus, patrimoine, situation familiale et objectifs. Elle compare ces éléments avec les différents pays pour produire une analyse réellement adaptée à votre profil et à vos projets.',
   },
   {
-    question: 'Pourquoi payer pour Navira ?',
+    question: 'Pourquoi ne pas simplement faire mes recherches moi-même ?',
     answer:
-      'Parce qu’une décision d’expatriation mérite une analyse structurée plutôt qu’une estimation approximative.',
+      'Les informations existent, mais elles sont dispersées, techniques et difficiles à comparer entre pays. Navira les centralise, les structure et les actualise grâce à des retours terrain pour vous offrir une vision claire, fiable et exploitable en quelques minutes.',
   },
 ]
 
-export default function FAQSection() {
+export default function Faq() {
   const [open, setOpen] = useState<number | null>(0)
 
   return (
-    <section className="relative py-28 bg-surface overflow-hidden">
+    <section id="faq" className="relative py-28 bg-surface overflow-hidden">
 
       {/* BACKGROUND */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(108,92,231,0.06),transparent_55%)]" />
@@ -42,19 +42,18 @@ export default function FAQSection() {
       <div className="relative z-10 max-w-5xl mx-auto px-6">
 
         {/* HEADER */}
-        <div className="text-center max-w-2xl mx-auto">
+        <div className="text-center max-w-4xl mx-auto">
 
           <p className="text-xs tracking-[0.16em] uppercase text-(--accent) font-semibold">
             Questions fréquentes
           </p>
 
           <h2 className="mt-3 text-5xl font-extrabold tracking-[-0.04em] text-(--primary)">
-            Vous avez des questions ?
+            Tout ce que vous devez savoir avant de prendre votre décision
           </h2>
 
-          <p className="mt-5 text-(--text-muted)">
-            Voici les réponses aux interrogations les plus fréquentes concernant
-            les simulations et le fonctionnement de Navira.
+          <p className="mt-5 text-lg text-(--text-muted)">
+            Voici les réponses aux interrogations les plus fréquentes concernant l'outil Navira.
           </p>
 
         </div>

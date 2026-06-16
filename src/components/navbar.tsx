@@ -16,7 +16,7 @@ const navigation = [
     href: '#simulation',
   },
   {
-    label: 'Tarifs',
+    label: 'Tarification',
     href: '#pricing',
   },
 ]

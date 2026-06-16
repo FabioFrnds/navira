@@ -1,12 +1,12 @@
 import Navbar from '@/src/components/navbar'
 import Hero from '@/src/components/hero'
+import What from '@/src/components/what'
 import Simulation from '@/src/components/simulation'
-import WhatYouGetSection from '@/src/components/WhatYouGetSection'
-import ReportExampleSection from '@/src/components/ReportExampleSection'
-import PricingSection from '@/src/components/PricingSection'
-import FAQSection from '@/src/components/FAQSection'
-import TestimonialsSection from '@/src/components/TestimonialsSection'
-import Footer from '@/src/components/Footer'
+import Report from '@/src/components/report'
+import Pricing from '@/src/components/pricing'
+import Faq from '@/src/components/faq'
+import Testimonials from '@/src/components/testimonials'
+import Footer from '@/src/components/footer'
 
 export default function Page() {
   return (
@@ -23,20 +23,20 @@ export default function Page() {
         <Hero />
 
         {/* SIMULATION */}
+        <What />
+
+        {/* SIMULATION */}
         <Simulation />
 
         {/* SIMULATION */}
-        <WhatYouGetSection />
+        <Report />
 
         {/* SIMULATION */}
-        <ReportExampleSection />
+        <Pricing />
 
-        {/* SIMULATION */}
-        <PricingSection />
+        <Testimonials />
 
-        <TestimonialsSection />
-
-        <FAQSection />
+        <Faq />
 
         <Footer />
 

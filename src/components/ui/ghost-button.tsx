@@ -15,13 +15,13 @@ export function GhostButton({ children }: { children: ReactNode }) {
         text-(--primary)
 
         bg-white/30
-        border border-(--border)
+        border border-black/20
+        hover:border-black/40
 
         backdrop-blur-xl
 
         transition-all duration-300
         hover:bg-white/60
-        hover:border-(--accent)/30
         hover:scale-[1.03]
         active:scale-[0.98]
 

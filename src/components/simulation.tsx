@@ -6,7 +6,7 @@ export default function Simulation() {
   return (
     <section
       id="simulation"
-      className="relative py-28 bg-blue-zone overflow-hidden"
+      className="relative py-28 bg-surface overflow-hidden"
     >
       {/* BACKGROUND */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(108,92,231,0.06),transparent_55%)]" />
@@ -14,43 +14,33 @@ export default function Simulation() {
       <div className="relative z-10 max-w-6xl mx-auto px-6">
 
         {/* HEADER */}
-        <div className="text-center max-w-3xl mx-auto">
+        <div className="text-center max-w-4xl mx-auto">
   <p className="text-xs tracking-[0.16em] uppercase text-(--accent) font-semibold">
     Simulation
   </p>
 
   <h2 className="mt-3 text-5xl font-extrabold tracking-[-0.04em] text-(--primary) leading-tight">
-    Votre trajectoire change selon vos choix de pays
+    Votre vie change selon votre choix
   </h2>
 
   <p className="mt-5 text-lg text-(--text-muted)">
-    Même profil, trois environnements différents. Voici l’impact réel sur votre patrimoine.
+    À profil identique, le choix du pays peut créer des écarts de plusieurs centaines de milliers d’euros.
   </p>
-
-  <div className="mt-8 inline-flex items-center gap-2 rounded-full bg-white border border-(--border) px-4 py-2 text-sm text-(--text-muted)">
-    <span className="h-2 w-2 rounded-full bg-(--accent)" />
-    Exemple basé sur un horizon de 20 ans
-  </div>
 </div>
 
         {/* PROFILE */}
         <div className="mt-14 navira-card p-8">
 
           <p className="text-xs text-(--text-muted) uppercase tracking-widest">
-            Profil simulé
+            Profil de simulation
           </p>
 
-          <div className="mt-3 flex items-center justify-between">
-
-            <h3 className="text-xl font-bold text-(--primary)">
-              Lucas — 32 ans
-            </h3>
-
-            <span className="text-xs px-3 py-1 rounded-full bg-(--secondary)/10 text-(--secondary)">
-              Freelance
-            </span>
-
-          </div>
+          <div className="text-xl mt-2 font-bold text-(--primary)">
+  Lucas — 32 ans{" "}
+  <span className="ml-2 text-xs px-3 py-1 rounded-full bg-(--secondary)/10 text-(--secondary)">
+    Freelance
+  </span>
+</div>
 
           <div className="mt-6 grid md:grid-cols-4 gap-6">
 
@@ -83,7 +73,7 @@ export default function Simulation() {
 
             <div>
               <p className="text-xl font-bold text-(--primary)">
-                20 ans
+                10 ans
               </p>
               <p className="text-sm text-(--text-muted)">
                 Horizon
@@ -98,27 +88,49 @@ export default function Simulation() {
         <div className="mt-10 grid md:grid-cols-3 gap-6">
 
           {/* FRANCE */}
-          <div
-            className="
-              navira-card p-7
-              transition-all duration-300
-              hover:-translate-y-1
-              hover:shadow-[0_20px_50px_rgba(11,31,59,0.10)]
-            "
-          >
+<div className="relative isolate group">
+
+  {/* ⭐ MASCOTTE À GAUCHE DERRIÈRE */}
+  <img
+    src="/navi-simulation.png"
+    alt="Navi simulation"
+    className="
+      absolute left-0 top-1/2 -translate-y-1/2
+      translate-x-[-60%]
+      w-64
+      opacity-90
+      pointer-events-none
+
+      transition-all duration-300
+      group-hover:translate-x-[-63%]
+      group-hover:scale-100
+      group-hover:opacity-100
+    "
+  />
+
+  <div
+    className="
+      navira-card p-7
+      relative z-10
+
+      transition-all duration-300
+      hover:-translate-y-1
+      hover:shadow-[0_20px_50px_rgba(11,31,59,0.12)]
+    "
+  >
 
             <div className="flex items-center justify-between">
               <p className="text-xs text-(--text-muted) uppercase tracking-widest">
-                Scénario
+                Scénario basique
               </p>
 
               <span className="text-xs text-(--text-muted)">
-                20 ans
+                10 ans
               </span>
             </div>
 
             <h3 className="mt-3 text-lg font-bold text-(--primary)">
-              🇫🇷 France
+              France - scénario de référence
             </h3>
 
             <div className="mt-6 space-y-4">
@@ -129,7 +141,7 @@ export default function Simulation() {
                 </p>
 
                 <p className="text-2xl font-bold text-(--primary)">
-                  180 000€
+                  ~150 000€
                 </p>
               </div>
 
@@ -144,9 +156,10 @@ export default function Simulation() {
               </div>
 
               <p className="text-sm text-(--text-muted) leading-relaxed">
-                Croissance stable mais fortement impactée par la fiscalité.
+                Croissance stable mais fortement impactée par la fiscalité et le coût global sur le long terme.
               </p>
 
+            </div>
             </div>
 
           </div>
@@ -163,16 +176,16 @@ export default function Simulation() {
 
             <div className="flex items-center justify-between">
               <p className="text-xs text-(--text-muted) uppercase tracking-widest">
-                Scénario
+                Scénario amélioré
               </p>
 
               <span className="text-xs text-(--text-muted)">
-                20 ans
+                10 ans
               </span>
             </div>
 
             <h3 className="mt-3 text-lg font-bold text-(--primary)">
-              🇵🇹 Portugal
+              Portugal
             </h3>
 
             <div className="mt-6 space-y-4">
@@ -183,7 +196,7 @@ export default function Simulation() {
                 </p>
 
                 <p className="text-2xl font-bold text-(--primary)">
-                  240 000€
+                  +330 000€
                 </p>
               </div>
 
@@ -192,13 +205,13 @@ export default function Simulation() {
                   Épargne
                 </p>
 
-                <p className="text-sm font-semibold text-(--text-muted)">
+                <p className="text-sm font-semibold text-(--secondary)">
                   Élevée
                 </p>
               </div>
 
               <p className="text-sm text-(--text-muted) leading-relaxed">
-                Optimisation grâce au coût de vie réduit.
+                Amélioration de la capacité d’épargne grâce à un coût de vie plus faible et une fiscalité plus favorable.
               </p>
 
             </div>
@@ -235,7 +248,7 @@ export default function Simulation() {
               </div>
 
               <h3 className="mt-3 text-lg font-bold text-(--accent)">
-                🇲🇺 Maurice
+                Maurice
               </h3>
 
               <div className="mt-6 space-y-4">
@@ -246,7 +259,7 @@ export default function Simulation() {
                   </p>
 
                   <p className="text-2xl font-bold text-(--primary)">
-                    310 000€
+                    +580 000€
                   </p>
                 </div>
 
@@ -261,7 +274,7 @@ export default function Simulation() {
                 </div>
 
                 <p className="text-sm text-(--text-muted) leading-relaxed">
-                  Forte optimisation fiscale + coût de vie réduit.
+                  Optimisation maximale grâce à une fiscalité avantageuse et un coût de vie réduit, impact direct sur le patrimoine.
                 </p>
 
               </div>
@@ -276,7 +289,7 @@ export default function Simulation() {
         <div className="mt-14 flex justify-center">
 
           <PrimaryButton>
-            Créer ma simulation
+            Voir mon scénario personnalisé
           </PrimaryButton>
 
         </div>
