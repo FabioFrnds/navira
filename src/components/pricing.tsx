@@ -1,166 +1,172 @@
 'use client'
 
 import { PrimaryButton } from '@/src/components/ui/primary-button'
-import { SecondaryButton } from '@/src/components/ui/secondary-button'
-import { GhostButton } from '@/src/components/ui/ghost-button'
 
-export default function Pricing() {
+export default function Simulation() {
   return (
-    <section id="pricing" className="relative py-28 bg-soft-zone overflow-hidden">
-
+    <section
+      id="simulation"
+      className="relative py-28 bg-surface overflow-hidden"
+    >
       {/* BACKGROUND */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(108,92,231,0.05),transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(108,92,231,0.06),transparent_55%)]" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
 
         {/* HEADER */}
         <div className="text-center max-w-4xl mx-auto">
+  <p className="text-xs tracking-[0.16em] uppercase text-(--accent) font-semibold">
+    Simulation
+  </p>
 
-          <p className="text-xs tracking-[0.16em] uppercase text-(--accent) font-semibold">
-            Tarification
+  <h2 className="mt-3 text-5xl font-extrabold tracking-[-0.04em] text-(--primary) leading-tight">
+    Votre vie change selon votre choix
+  </h2>
+
+  <p className="mt-5 text-lg text-(--text-muted)">
+    À profil identique, le choix du pays peut créer des écarts de plusieurs centaines de milliers d’euros.
+  </p>
+</div>
+
+        {/* PROFILE */}
+        <div className="mt-14 navira-card p-8">
+
+          <p className="text-xs text-(--text-muted) uppercase tracking-widest">
+            Profil de simulation
           </p>
 
-          <h2 className="mt-3 text-5xl font-extrabold tracking-[-0.04em] text-(--primary)">
-            Faites le bon choix d’expatriation
-          </h2>
+          <div className="text-xl mt-2 font-bold text-(--primary)">
+  Lucas — 32 ans{" "}
+  <span className="ml-2 text-xs px-3 py-1 rounded-full bg-(--secondary)/10 text-(--secondary)">
+    Freelance
+  </span>
+</div>
 
-          <p className="mt-5 text-lg text-(--text-muted)">
-            Simulez votre situation, comparez les meilleurs pays et comprenez où vous gagnez ou perdez de l’argent pour prendre une décision d’expatriation éclairée.
-          </p>
-
-        </div>
-
-        {/* GRID */}
-        <div className="mt-45 grid md:grid-cols-3 gap-6 items-stretch">
-
-          {/* LEFT */}
-          <div className="navira-card p-7 flex flex-col h-full transition hover:-translate-y-1">
+          <div className="mt-6 grid md:grid-cols-4 gap-6">
 
             <div>
-
-              <p className="text-xs text-(--text-muted) uppercase tracking-widest">
-                Découverte gratuite
+              <p className="text-xl font-bold text-(--primary)">
+                5 000€
               </p>
-
-              <h3 className="mt-3 text-2xl font-bold text-(--primary)">
-                France vs Maurice
-              </h3>
-
-              <p className="mt-2 text-sm text-(--text-muted)">
-                Testez une comparaison simplifiée pour comprendre l’impact réel d’une expatriation.
+              <p className="text-sm text-(--text-muted)">
+                Revenus mensuels
               </p>
-
-              <p className="mt-6 text-3xl font-bold text-(--primary)">
-                Gratuit
-              </p>
-
-              <ul className="mt-6 space-y-2 text-sm text-(--text-muted)">
-                <li>✔ Comparaison France vs Maurice</li>
-                <li>✔ Fiscalité + coût de la vie simplifiés</li>
-                <li>✔ Résultat instantané</li>
-              </ul>
-
             </div>
 
-            <div className="mt-auto pt-8">
-              <GhostButton>Tester gratuitement</GhostButton>
+            <div>
+              <p className="text-xl font-bold text-(--primary)">
+                1 200€
+              </p>
+              <p className="text-sm text-(--text-muted)">
+                Capacité d’épargne
+              </p>
+            </div>
+
+            <div>
+              <p className="text-xl font-bold text-(--primary)">
+                40 000€
+              </p>
+              <p className="text-sm text-(--text-muted)">
+                Patrimoine actuel
+              </p>
+            </div>
+
+            <div>
+              <p className="text-xl font-bold text-(--primary)">
+                10 ans
+              </p>
+              <p className="text-sm text-(--text-muted)">
+                Horizon
+              </p>
             </div>
 
           </div>
 
-          {/* CENTER */}
+        </div>
+
+        {/* COUNTRIES */}
+        <div className="mt-10 grid md:grid-cols-3 gap-6">
+
+          {/* FRANCE */}
 <div className="relative isolate group">
 
-  {/* ⭐ MASCOTTE DERRIÈRE LA CARTE */}
+  {/* ⭐ MASCOTTE À GAUCHE DERRIÈRE */}
   <img
-    src="/navi-pricing.png"
-    alt="Navi mascot"
+    src="/navi-simulation.png"
+    alt="Navi simulation"
     className="
       absolute
       z-0
-      -top-45
-      left-1/2
-      -translate-x-1/2
-      w-72
+      left-0
+      top-1/2
+      -translate-y-1/2
+      translate-x-[-60%]
+      w-64
       opacity-90
       pointer-events-none
 
       transition-all duration-300
-      group-hover:-translate-y-2
-      group-hover:scale-105
+      group-hover:translate-x-[-63%]
+      group-hover:scale-100
       group-hover:opacity-100
     "
   />
-
 
   <div
     className="
       navira-card
       bg-white
       p-7
-      flex flex-col h-full
+      relative z-10
 
-      border border-(--accent)/30
-      shadow-soft
-
-      relative
-      z-10
-
+      transition-all duration-300
       hover:-translate-y-1
-      transition
+      hover:shadow-[0_20px_50px_rgba(11,31,59,0.12)]
     "
   >
 
-    <div className="relative z-10 flex flex-col h-full">
+    <div className="flex items-center justify-between">
+      <p className="text-xs text-(--text-muted) uppercase tracking-widest">
+        Scénario basique
+      </p>
+
+      <span className="text-xs text-(--text-muted)">
+        10 ans
+      </span>
+    </div>
+
+    <h3 className="mt-3 text-lg font-bold text-(--primary)">
+      France - scénario de référence
+    </h3>
+
+
+    <div className="mt-6 space-y-4">
 
       <div>
-
-        <div className="flex justify-between items-center">
-
-          <p className="text-xs text-(--accent) uppercase tracking-widest font-semibold">
-            Recommandé
-          </p>
-
-          <span className="text-xs px-2 py-1 rounded-full bg-(--accent)/10 text-(--accent)">
-            illimité
-          </span>
-
-        </div>
-
-
-        <h3 className="mt-3 text-2xl font-bold text-(--primary)">
-          Navira Global
-        </h3>
-
-
-        <p className="mt-2 text-sm text-(--text-muted)">
-          Analyse complète de votre situation et comparaison entre plus de 20 pays.
+        <p className="text-sm text-(--text-muted)">
+          Patrimoine estimé
         </p>
 
-
-        <p className="mt-6 text-3xl font-bold text-(--accent)">
-          999€
+        <p className="text-2xl font-bold text-(--primary)">
+          ~150 000€
         </p>
-
-
-        <ul className="mt-6 space-y-2 text-sm text-(--text-muted)">
-          <li>✔ Analyse personnalisée complète</li>
-          <li>✔ +20 pays comparés</li>
-          <li>✔ Fiscalité, patrimoine... et bien plus encore</li>
-          <li>✔ Projection 5 / 10 / 20 ans</li>
-          <li>✔ Rapports PDF illimités</li>
-          <li>✔ Mises à jour incluses</li>
-        </ul>
-
       </div>
 
 
-      <div className="mt-auto pt-8">
-        <SecondaryButton>
-          Accéder à ma simulation
-        </SecondaryButton>
+      <div>
+        <p className="text-sm text-(--text-muted)">
+          Épargne
+        </p>
+
+        <p className="text-sm font-semibold text-(--text-muted)">
+          Modérée
+        </p>
       </div>
 
+
+      <p className="text-sm text-(--text-muted) leading-relaxed">
+        Croissance stable mais fortement impactée par la fiscalité et le coût global sur le long terme.
+      </p>
 
     </div>
 
@@ -168,46 +174,133 @@ export default function Pricing() {
 
 </div>
 
-          {/* RIGHT */}
-          <div className="navira-card p-7 flex flex-col h-full transition hover:-translate-y-1">
+          {/* PORTUGAL */}
+          <div
+            className="
+              navira-card p-7
+              transition-all duration-300
+              hover:-translate-y-1
+              hover:shadow-[0_20px_50px_rgba(11,31,59,0.10)]
+            "
+          >
 
-            <div>
-
+            <div className="flex items-center justify-between">
               <p className="text-xs text-(--text-muted) uppercase tracking-widest">
-                Accompagnement personnalisé
+                Scénario amélioré
               </p>
 
-              <h3 className="mt-3 text-2xl font-bold text-(--primary)">
-                Expatriation sur mesure
-              </h3>
-
-              <p className="mt-2 text-sm text-(--text-muted)">
-                Un accompagnement complet pour structurer votre projet d’expatriation.
-              </p>
-
-              <p className="mt-6 text-3xl font-bold text-(--primary)">
-                2 500€
-              </p>
-
-              <ul className="mt-6 space-y-2 text-sm text-(--text-muted)">
-                <li>✔ Audit complet de votre situation</li>
-                <li>✔ Stratégie d’expatriation sur mesure</li>
-                <li>✔ Appel avec un expert sur place</li>
-                <li>✔ Checklist d’installation détaillée</li>
-                <li>✔ Optimisation fiscale et patrimoniale</li>
-              </ul>
-
-              <p className="mt-10 text-sm text-(--text-muted)">
-                Pays pris en compte actuellement : <br />- Maurice
-              </p>
-
+              <span className="text-xs text-(--text-muted)">
+                10 ans
+              </span>
             </div>
 
-            <div className="mt-auto pt-8">
-              <PrimaryButton>Planifier mon appel</PrimaryButton>
+            <h3 className="mt-3 text-lg font-bold text-(--primary)">
+              Portugal
+            </h3>
+
+            <div className="mt-6 space-y-4">
+
+              <div>
+                <p className="text-sm text-(--text-muted)">
+                  Patrimoine estimé
+                </p>
+
+                <p className="text-2xl font-bold text-(--primary)">
+                  +330 000€
+                </p>
+              </div>
+
+              <div>
+                <p className="text-sm text-(--text-muted)">
+                  Épargne
+                </p>
+
+                <p className="text-sm font-semibold text-(--secondary)">
+                  Élevée
+                </p>
+              </div>
+
+              <p className="text-sm text-(--text-muted) leading-relaxed">
+                Amélioration de la capacité d’épargne grâce à un coût de vie plus faible et une fiscalité plus favorable.
+              </p>
+
             </div>
 
           </div>
+
+          {/* MAURICE */}
+          <div
+            className="
+              navira-card p-7
+              relative overflow-hidden
+              border border-(--accent)/30
+              shadow-soft
+              transition-all duration-300
+              hover:-translate-y-1
+              hover:shadow-[0_20px_50px_rgba(108,92,231,0.18)]
+            "
+          >
+
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(108,92,231,0.12),transparent_60%)] pointer-events-none" />
+
+            <div className="relative z-10">
+
+              <div className="flex items-center justify-between">
+
+                <p className="text-xs text-(--accent) uppercase tracking-widest font-semibold">
+                  Scénario optimal
+                </p>
+
+                <span className="text-xs px-2 py-1 rounded-full bg-(--accent)/10 text-(--accent)">
+                  meilleur résultat
+                </span>
+
+              </div>
+
+              <h3 className="mt-3 text-lg font-bold text-(--accent)">
+                Maurice
+              </h3>
+
+              <div className="mt-6 space-y-4">
+
+                <div>
+                  <p className="text-sm text-(--text-muted)">
+                    Patrimoine estimé
+                  </p>
+
+                  <p className="text-2xl font-bold text-(--primary)">
+                    +580 000€
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-sm text-(--text-muted)">
+                    Épargne
+                  </p>
+
+                  <p className="text-sm font-semibold text-(--accent)">
+                    Très élevée
+                  </p>
+                </div>
+
+                <p className="text-sm text-(--text-muted) leading-relaxed">
+                  Optimisation maximale grâce à une fiscalité avantageuse et un coût de vie réduit, impact direct sur le patrimoine.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* CTA */}
+        <div className="mt-14 flex justify-center">
+
+          <PrimaryButton>
+            Voir mon scénario personnalisé
+          </PrimaryButton>
 
         </div>
 
