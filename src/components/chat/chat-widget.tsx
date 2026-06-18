@@ -1,40 +1,115 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ChatFunnel from "@/src/components/chat-funnel";
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
 
+  // ESC to close
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
+
+  // Body lock scroll
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "auto";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [open]);
+
   return (
     <>
-      {/* BUTTON FLOATING */}
+      {/* FLOATING BUTTON */}
       <button
         onClick={() => setOpen(true)}
-        className="fixed bottom-6 right-6 bg-black text-white px-5 py-3 rounded-full shadow-lg z-50"
+        aria-label="Ouvrir le chat"
+        className="
+          fixed bottom-6 right-6 z-50
+          group
+          flex items-center justify-center
+          w-12 h-12
+          rounded-full
+          bg-[linear-gradient(135deg,#6C5CE7,#1E4D8C)]
+          shadow-lg
+          transition-all duration-300
+          hover:scale-110
+          active:scale-95
+          cursor-pointer
+        "
       >
-        Simuler mon expatriation
+        <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(circle_at_30%_30%,rgba(108,92,231,0.35),transparent_70%)]" />
+        <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out bg-[linear-gradient(to_right,transparent,rgba(255,255,255,0.18),transparent)] skew-x-12 rounded-full" />
+        <div className="relative z-10 text-white text-xl font-bold">✦</div>
       </button>
 
-      {/* MODAL */}
+      {/* CHAT MODAL */}
       {open && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-end md:items-center justify-center">
-          
-          <div className="bg-white w-full md:w-125 h-[90vh] md:h-150 rounded-t-2xl md:rounded-2xl overflow-hidden relative">
-            
-            {/* close button */}
-            <button
-              onClick={() => setOpen(false)}
-              className="absolute top-3 right-3 text-black z-10"
-            >
-              ✕
-            </button>
+        <div className="fixed inset-0 z-50 flex items-end justify-end p-4 sm:p-6">
+          {/* Overlay */}
+          <div
+            className="absolute inset-0 bg-black/30 backdrop-blur-xs"
+            onClick={() => setOpen(false)}
+          />
 
-            {/* chatbot */}
-            <div className="h-full overflow-y-auto">
-              <ChatFunnel />
+          {/* MAIN CHAT CONTAINER */}
+          <div
+            className="
+              relative z-10
+              w-[95vw] sm:w-105
+              h-[80vh] sm:h-150
+              bg-white
+              rounded-4xl
+              shadow-[0_12px_40px_rgba(0,0,0,0.12)]
+              overflow-hidden
+              flex flex-col
+              border border-gray-100
+            "
+          >
+            {/* HEADER */}
+            <div className="flex items-center gap-3 px-5 py-4 bg-[#0B1F3B] text-white shrink-0">
+              <img
+                src="/navi-chat.png"
+                alt="Avatar Navi"
+                className="w-9 h-9 rounded-full object-cover ring-2 ring-white/10"
+              />
+              <div className="flex flex-col leading-tight">
+                <p className="font-semibold text-sm tracking-wide">Navi</p>
+                <p className="text-[11px] text-white/70">
+                  votre assistant personnalisé
+                </p>
+              </div>
+
+              {/* CLOSE BUTTON */}
+              <button
+                onClick={() => setOpen(false)}
+                aria-label="Fermer le chat"
+                className="
+                  ml-auto
+                  w-8 h-8
+                  rounded-full
+                  flex items-center justify-center
+                  text-white
+                  bg-white/10
+                  hover:bg-white/20
+                  transition-all
+                  cursor-pointer
+                  text-xs
+                "
+              >
+                ✕
+              </button>
             </div>
 
+            {/* BODY CONTAINER : Zone stricte d'affichage */}
+            <div className="flex-1 min-h-0 overflow-hidden bg-white">
+              <ChatFunnel />
+            </div>
           </div>
         </div>
       )}
