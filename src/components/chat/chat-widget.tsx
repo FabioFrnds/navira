@@ -25,28 +25,36 @@ export default function ChatWidget() {
 
   return (
     <>
-      {/* FLOATING BUTTON */}
-      <button
-        onClick={() => setOpen(true)}
-        aria-label="Ouvrir le chat"
-        className="
-          fixed bottom-6 right-6 z-50
-          group
-          flex items-center justify-center
-          w-12 h-12
-          rounded-full
-          bg-[linear-gradient(135deg,#6C5CE7,#1E4D8C)]
-          shadow-lg
-          transition-all duration-300
-          hover:scale-110
-          active:scale-95
-          cursor-pointer
-        "
-      >
-        <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(circle_at_30%_30%,rgba(108,92,231,0.35),transparent_70%)]" />
-        <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out bg-[linear-gradient(to_right,transparent,rgba(255,255,255,0.18),transparent)] skew-x-12 rounded-full" />
-        <div className="relative z-10 text-white text-xl font-bold">✦</div>
-      </button>
+      {/* 1. Le Wrapper : s'occupe UNIQUEMENT de la position FIXE */}
+<div className="fixed bottom-6 right-6 z-50">
+  
+  {/* 2. Le Bouton : s'occupe du style, du relatif et du overflow-hidden */}
+  <button
+    onClick={() => setOpen(true)}
+    aria-label="Ouvrir le chat"
+    className="
+      group
+      relative overflow-hidden
+      flex items-center justify-center
+      w-12 h-12
+      rounded-full
+      bg-[linear-gradient(135deg,#6C5CE7,#1E4D8C)]
+      shadow-lg
+      transition-all duration-300
+      hover:scale-110
+      active:scale-95
+      cursor-pointer
+    "
+  >
+    {/* Glow radial */}
+    <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(circle_at_30%_30%,rgba(108,92,231,0.35),transparent_70%)]" />
+    
+    {/* Shine effect */}
+    <span className="absolute inset-0 opacity-0 group-hover:opacity-100 -translate-x-full group-hover:translate-x-full transition-all duration-700 ease-out bg-[linear-gradient(to_right,transparent,rgba(255,255,255,0.18),transparent)] skew-x-12 rounded-full" />
+    
+    <div className="relative z-10 text-white text-xl font-bold">✦</div>
+  </button>
+</div>
 
       {/* CHAT MODAL */}
       {open && (

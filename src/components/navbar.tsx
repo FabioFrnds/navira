@@ -88,14 +88,18 @@ export default function Navbar() {
         <div className="flex items-center gap-2.5">
 
           <div className="hidden sm:block">
+            <Link href="/connexion">
             <GhostButton>
               Se connecter
             </GhostButton>
+            </Link>
           </div>
 
+          <Link href="/inscription">
           <SecondaryButton>
             Créer un compte
           </SecondaryButton>
+          </Link>
 
         </div>
 

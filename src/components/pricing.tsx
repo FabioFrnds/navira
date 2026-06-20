@@ -129,7 +129,7 @@ export default function Pricing() {
 
 
         <h3 className="mt-3 text-2xl font-bold text-(--primary)">
-          Navira Global
+          Navira Global Lifetime
         </h3>
 
 

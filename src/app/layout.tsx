@@ -33,28 +33,30 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="fr">
+    <html lang="fr" data-scroll-behavior="smooth">
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrains.variable} bg-[#F7F8FA] text-[#111827] antialiased`}
       >
+
         {/* BACKGROUND GLOBAL NAVIRA */}
-        <div className="fixed inset-0 -z-10">
-          
+        <div className="fixed inset-0 -z-10 pointer-events-none">
+
           {/* fond principal */}
           <div className="absolute inset-0 bg-[#F7F8FA]" />
 
           {/* glow bleu profond */}
-          <div className="absolute top-50 left-1/2 -translate-x-1/2 h-150 w-150
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 h-150 w-150
             bg-[radial-gradient(circle_at_top,rgba(11,31,59,0.18),transparent_65%)]"
           />
 
           {/* accent violet subtil */}
-          <div className="absolute bottom-50 right-50 h-125 w-125
+          <div className="absolute bottom-1/4 right-1/4 h-125 w-125
             bg-[radial-gradient(circle_at_center,rgba(108,92,231,0.10),transparent_60%)]"
           />
         </div>
 
         {children}
+
         <ChatWidget />
       </body>
     </html>

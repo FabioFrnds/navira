@@ -1,11 +1,20 @@
 'use client'
 
-import { ReactNode } from 'react'
+import { ReactNode, ButtonHTMLAttributes } from 'react'
 
-export function PrimaryButton({ children }: { children: ReactNode }) {
+type PrimaryButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  children: ReactNode
+}
+
+export function PrimaryButton({
+  children,
+  className = '',
+  ...props
+}: PrimaryButtonProps) {
   return (
     <button
-      className="
+      {...props}
+      className={`
         relative group overflow-hidden
         h-14 px-6
         rounded-2xl
@@ -20,7 +29,9 @@ export function PrimaryButton({ children }: { children: ReactNode }) {
         active:scale-[0.98]
 
         cursor-pointer
-      "
+
+        ${className}
+      `}
     >
       {/* NAVIRA subtle glow layer */}
       <span
@@ -38,7 +49,7 @@ export function PrimaryButton({ children }: { children: ReactNode }) {
         />
       </span>
 
-      {/* refined shine (moins agressif, plus premium) */}
+      {/* refined shine */}
       <span
         className="
           absolute inset-0
@@ -49,7 +60,7 @@ export function PrimaryButton({ children }: { children: ReactNode }) {
         "
       />
 
-      {/* subtle top highlight (SaaS polish) */}
+      {/* subtle top highlight */}
       <span
         className="
           absolute top-0 left-0 right-0

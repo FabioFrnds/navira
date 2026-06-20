@@ -1,4 +1,7 @@
 import Image from 'next/image'
+import { PrimaryButton } from './ui/primary-button'
+import { SecondaryButton } from './ui/secondary-button'
+import { GhostButton } from './ui/ghost-button'
 
 const footerLinks = {
   product: [
