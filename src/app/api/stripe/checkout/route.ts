@@ -20,6 +20,7 @@ export async function POST(req: Request) {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'payment', 
+      allow_promotion_codes: true, // 👈 AJOUTÉ ICI : Active les codes promos sur l'interface Stripe Checkout
       line_items: [
         {
           // 2. Flexibilité : Utilise la variable d'env Vercel, ou ton ID actuel par défaut
@@ -28,7 +29,7 @@ export async function POST(req: Request) {
         },
       ],
       success_url: `${baseUrl}/dashboard/billing?success=true`,
-cancel_url: `${baseUrl}/dashboard/billing?canceled=true`,
+      cancel_url: `${baseUrl}/dashboard/billing?canceled=true`,
       metadata: {
         userId: userId,
       },

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import { useRouter } from "next/navigation"; // 👈 1. Import du router Next.js
 
 type Profile = {
   status: string;
@@ -19,6 +20,8 @@ type Message = {
 };
 
 export default function ChatFunnel() {
+  const router = useRouter(); // 👈 2. Initialisation du router
+
   const [step, setStep] = useState(0);
   const [score, setScore] = useState<number | null>(null);
 
@@ -251,7 +254,8 @@ export default function ChatFunnel() {
                   {m.showCta && (
                     <div className="mt-5">
                       <button
-                        onClick={() => console.log("Checkout complet")}
+                        // 👈 3. Modification de l'action ici pour rediriger vers la page d'inscription
+                        onClick={() => router.push("/inscription")} 
                         className="
                           relative group overflow-hidden
                           w-full sm:w-auto inline-flex items-center justify-center
