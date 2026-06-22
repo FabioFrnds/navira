@@ -1,10 +1,44 @@
 'use client';
 
+import { useState } from 'react';
 import { PrimaryButton } from '@/src/components/ui/primary-button';
 import { SecondaryButton } from '@/src/components/ui/secondary-button';
 import Link from 'next/link';
 
+// 1. On importe le nouveau composant (Assure-toi de l'avoir créé au bon endroit)
+import { ComparisonTable } from '@/src/components/dashboard/comparison-table';
+
 export default function DashboardPage() {
+  // 2. État pour gérer le chargement lors du clic sur le bouton Premium (Stripe)
+  const [loading, setLoading] = useState(false);
+
+  // 3. Fonction pour appeler notre route API Stripe
+  const handleSubscribe = async () => {
+    try {
+      setLoading(true);
+      
+      // TODO: Quand tu auras branché Supabase Auth, remplace ceci par session.user.id
+      const userId = "786c23fd-1441-4e3b-a62f-727047d094f3"; 
+
+      const response = await fetch('/api/stripe/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId }),
+      });
+
+      const data = await response.json();
+      
+      // Redirection vers la page sécurisée de Stripe
+      if (data.url) {
+        window.location.href = data.url;
+      }
+    } catch (error) {
+      console.error("Erreur lors du paiement:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-soft-zone pt-28 pb-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto space-y-8">
@@ -15,9 +49,10 @@ export default function DashboardPage() {
             <h1 className="text-3xl font-extrabold text-(--primary)">Mon Tableau de Bord</h1>
             <p className="text-(--text-muted) mt-2">Bienvenue 👋 Voici l'analyse de votre situation.</p>
           </div>
-          <Link href="/#pricing">
-            <SecondaryButton>Débloquer tout (Premium)</SecondaryButton>
-          </Link>
+          {/* On utilise notre fonction Stripe ici */}
+          <SecondaryButton onClick={handleSubscribe} disabled={loading}>
+            {loading ? 'Redirection...' : 'Débloquer tout (Premium)'}
+          </SecondaryButton>
         </div>
 
         {/* SECTION 1: KPI (RÉSUMÉ RAPIDE) */}
@@ -41,39 +76,8 @@ export default function DashboardPage() {
           {/* COLONNE GAUCHE : ANALYSE & SIMULATION */}
           <div className="lg:col-span-2 space-y-6">
             
-            {/* CARTE COMPARAISON */}
-            <div className="navira-card p-8">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-bold text-(--primary)">Simulation : France vs Île Maurice</h2>
-                <span className="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">Actif</span>
-              </div>
-
-              <div className="space-y-6">
-                <div>
-                  <div className="flex justify-between text-sm mb-2">
-                    <span className="font-semibold text-(--primary)">Maurice (Est.)</span>
-                    <span className="font-bold text-(--accent)">+45%</span>
-                  </div>
-                  <div className="h-3 bg-(--accent)/10 rounded-full overflow-hidden">
-                    <div className="h-full bg-(--accent) w-[85%] animate-in fade-in duration-1000" />
-                  </div>
-                </div>
-                <div>
-                  <div className="flex justify-between text-sm mb-2 opacity-80">
-                    <span className="text-(--text-muted)">France (Actuel)</span>
-                    <span>Base</span>
-                  </div>
-                  <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-slate-400 w-[40%]" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-(--border) flex flex-col sm:flex-row gap-4 items-center justify-between">
-                <p className="text-sm text-(--text-muted)">Ajustez vos revenus pour des résultats plus précis.</p>
-                <PrimaryButton>Modifier mon profil</PrimaryButton>
-              </div>
-            </div>
+            {/* 4. ON REMPLACE L'ANCIENNE CARTE PAR NOTRE COMPOSANT */}
+            <ComparisonTable />
 
             {/* SECTION TEASING PREMIUM */}
             <div className="navira-card p-8 relative overflow-hidden border-2 border-dashed border-(--accent)/20">
@@ -82,9 +86,9 @@ export default function DashboardPage() {
                   <span className="text-4xl mb-4 block">🚀</span>
                   <h3 className="text-xl font-bold text-(--primary)">Comparez les 20 pays</h3>
                   <p className="text-sm text-(--text-muted) mt-2 mb-6">Accédez au comparateur mondial et découvrez votre destination idéale.</p>
-                  <Link href="/#pricing">
-                    <PrimaryButton className="w-full justify-center">Accéder au Premium</PrimaryButton>
-                  </Link>
+                  <PrimaryButton onClick={handleSubscribe} disabled={loading} className="w-full justify-center">
+                    {loading ? 'Chargement...' : 'Accéder au Premium'}
+                  </PrimaryButton>
                 </div>
               </div>
               <div className="opacity-30 blur-sm select-none">
@@ -109,9 +113,11 @@ export default function DashboardPage() {
                 <li>✅ 20+ pays débloqués</li>
                 <li>✅ Rapports PDF</li>
               </ul>
-              <Link href="/#pricing" className="block mt-6">
-                <SecondaryButton>Mettre à niveau (999€)</SecondaryButton>
-              </Link>
+              <div className="mt-6">
+                <SecondaryButton onClick={handleSubscribe} disabled={loading} className="w-full justify-center">
+                  {loading ? 'Chargement...' : 'Mettre à niveau (999€)'}
+                </SecondaryButton>
+              </div>
             </div>
 
             {/* CARTE SUPPORT */}

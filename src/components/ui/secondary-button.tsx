@@ -1,11 +1,20 @@
 'use client'
 
-import { ReactNode } from 'react'
+import { ReactNode, ButtonHTMLAttributes } from 'react'
 
-export function SecondaryButton({ children }: { children: ReactNode }) {
+type SecondaryButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  children: ReactNode
+}
+
+export function SecondaryButton({ 
+  children, 
+  className = '', 
+  ...props 
+}: SecondaryButtonProps) {
   return (
     <button
-      className="
+      {...props}
+      className={`
         relative group overflow-hidden
         h-14 px-6
         rounded-2xl
@@ -21,8 +30,13 @@ export function SecondaryButton({ children }: { children: ReactNode }) {
         hover:scale-[1.04]
         active:scale-[0.98]
 
+        disabled:opacity-70
+        disabled:cursor-not-allowed
+        disabled:hover:scale-100
+
         cursor-pointer
-      "
+        ${className}
+      `}
     >
       {/* purple NAVIRA glow */}
       <span
