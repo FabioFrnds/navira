@@ -1,22 +1,22 @@
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { createClient } from '@supabase/supabase-js'; // On utilise un client admin pour bypasser les RLS
+import { createClient } from '@supabase/supabase-js'; 
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+  // @ts-ignore
   apiVersion: '2026-05-27.dahlia',
 });
 
-// Client Supabase avec l'accès admin (SERVICE_ROLE_KEY)
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
 export async function POST(req: Request) {
+  // 👈 1. ON INITIALISE LE CLIENT ICI (À l'intérieur de la fonction)
+  // On utilise un fallback (|| '') pour éviter les crashs de build
+  const supabaseAdmin = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+    process.env.SUPABASE_SERVICE_ROLE_KEY || ''
+  );
+
   const body = await req.text();
-  
-  // 👈 On attend la résolution de la promesse avec 'await'
   const reqHeaders = await headers(); 
   const signature = reqHeaders.get('Stripe-Signature') as string;
 
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET! // Secret du webhook à récupérer sur Stripe
+      process.env.STRIPE_WEBHOOK_SECRET! 
     );
   } catch (error: any) {
     return new NextResponse(`Webhook Error: ${error.message}`, { status: 400 });
@@ -34,15 +34,12 @@ export async function POST(req: Request) {
 
   const session = event.data.object as Stripe.Checkout.Session;
 
-  // Si le paiement est un succès
-  // Si le paiement est un succès
   if (event.type === 'checkout.session.completed') {
     const userId = session?.metadata?.userId;
     
     console.log("👉 [WEBHOOK] Paiement réussi ! User ID reçu :", userId);
 
     if (userId) {
-      // On ajoute .select() à la fin pour forcer Supabase à nous renvoyer le résultat
       const { data, error } = await supabaseAdmin
         .from('profiles')
         .update({
